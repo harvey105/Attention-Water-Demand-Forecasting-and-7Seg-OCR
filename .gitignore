@@ -1,0 +1,17 @@
+# Python & virtual environments
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+.ipynb_checkpoints/
+
+# Raw & processed datasets / trained weights (reproducible via task*_prepare_data.py)
+data/raw/
+data/processed/
+
+# OS & editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

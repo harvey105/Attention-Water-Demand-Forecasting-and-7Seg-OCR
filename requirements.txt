@@ -1,0 +1,10 @@
+tensorflow>=2.21.0
+scikit-learn>=1.9.1
+pandas>=3.1.1
+numpy>=2.4.6
+pillow>=13.0.0
+pyarrow>=26.0.1
+requests>=2.34.2
+plotly>=7.2.0
+kaleido>=1.5.2
+matplotlib>=3.11.2
