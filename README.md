@@ -27,16 +27,23 @@ Following instructor guidance (omitting Task 1), Group 4 designed and evaluated 
 
 ## Theoretical Background & Evaluation Metrics
 
-1. **LSTM Encoder–Decoder (Seq2Seq):** Standard SimpleRNNs suffer from vanishing gradients over long lookbacks (`48` hours). LSTM gates ($f_t, i_t, o_t$) regulate an explicit cell state $c_t$ to retain multi-day diurnal periodicity, while the Encoder–Decoder bridges variable input windows (`48 × 9`) and multi-step target horizons (`5` hours) or spatial visual slices (`64 × 128`) and variable-length character tokens (`2–6` chars).
+1. **LSTM Encoder–Decoder (Seq2Seq):** Standard SimpleRNNs suffer from vanishing gradients over long lookbacks (`48` hours). LSTM gates ($f\_t, i\_t, o\_t$) regulate an explicit cell state $c\_t$ to retain multi-day diurnal periodicity, while the Encoder–Decoder bridges variable input windows (`48 × 9`) and multi-step target horizons (`5` hours) or spatial visual slices (`64 × 128`) and variable-length character tokens (`2–6` chars).
 2. **Attention Mechanisms:**
-   - **Luong Dot-Product Attention (Task 2):** Each future horizon $t+1 \dots t+5$ dynamically weights all `48` encoder hidden states ($\alpha_{t,s} = \text{softmax}(\mathbf{q}_t^\top \mathbf{k}_s)$), preventing context bottlenecks over long horizons.
-   - **Multi-Head Cross-Attention with Positional Embeddings (Task 3):** Four parallel attention heads ($\text{head}_i = \text{Attention}(\mathbf{Q}\mathbf{W}_i^Q, \mathbf{K}\mathbf{W}_i^K, \mathbf{V}\mathbf{W}_i^V)$) track spatial left-to-right alignment, digit strokes, and tiny decimal points simultaneously.
+   - **Luong Dot-Product Attention (Task 2):** Each future horizon $t+1 \dots t+5$ dynamically weights all `48` encoder hidden states ($\alpha\_{t,s} = \text{softmax}(\mathbf{q}\_t^\top \mathbf{k}\_s)$), preventing context bottlenecks over long horizons.
+   - **Multi-Head Cross-Attention with Positional Embeddings (Task 3):** Four parallel attention heads ($\text{head}\_i = \text{Attention}(\mathbf{Q}\mathbf{W}\_i^Q, \mathbf{K}\mathbf{W}\_i^K, \mathbf{V}\mathbf{W}\_i^V)$) track spatial left-to-right alignment, digit strokes, and tiny decimal points simultaneously.
 3. **Evaluation Formulations:**
    - **Task 2 (Overall & Per-Horizon):**
-     $$\text{MAE} = \frac{1}{M}\sum |y_k - \hat{y}_k|, \quad \text{RMSE} = \sqrt{\frac{1}{M}\sum (y_k - \hat{y}_k)^2}, \quad R^2 = \text{NSE} = 1 - \frac{\sum (y_k - \hat{y}_k)^2}{\sum (y_k - \bar{y})^2}$$
-     *(Note: When $R^2$ is computed as the coefficient of determination $1 - \text{SS}_{\text{res}}/\text{SS}_{\text{tot}}$, it is mathematically identical to hydrological Nash–Sutcliffe Efficiency $\text{NSE}$, where $\text{NSE} > 0.90$ indicates excellent predictive skill.)*
+
+     $$
+     \text{MAE} = \frac{1}{M}\sum |y\_k - \hat{y}\_k|, \quad \text{RMSE} = \sqrt{\frac{1}{M}\sum (y\_k - \hat{y}\_k)^2}, \quad R^2 = \text{NSE} = 1 - \frac{\sum (y\_k - \hat{y}\_k)^2}{\sum (y\_k - \bar{y})^2}
+     $$
+
+     *(Note: When $R^2$ is computed as the coefficient of determination $1 - \text{SS}\_{\text{res}}/\text{SS}\_{\text{tot}}$, it is mathematically identical to hydrological Nash–Sutcliffe Efficiency $\text{NSE}$, where $\text{NSE} > 0.90$ indicates excellent predictive skill.)*
    - **Task 3 (Sequence OCR):**
-     $$\text{Exact-Match} = \frac{1}{N}\sum_{i=1}^N \mathbb{I}(\hat{S}_i = S_i), \quad \text{CER} = \frac{\sum_{i=1}^N \text{Levenshtein}(\hat{S}_i, S_i)}{\sum_{i=1}^N |S_i|}, \quad \text{Char Acc} = 1 - \text{CER}$$
+
+     $$
+     \text{Exact-Match} = \frac{1}{N}\sum\_{i=1}^N \mathbb{I}(\hat{S}\_i = S\_i), \quad \text{CER} = \frac{\sum\_{i=1}^N \text{Levenshtein}(\hat{S}\_i, S\_i)}{\sum\_{i=1}^N |S\_i|}, \quad \text{Char Acc} = 1 - \text{CER}
+     $$
 
 ---
 
