@@ -34,16 +34,12 @@ Following instructor guidance (omitting Task 1), Group 4 designed and evaluated 
 3. **Evaluation Formulations:**
    - **Task 2 (Overall & Per-Horizon):**
 
-     ```math
-     \text{MAE} = \frac{1}{M}\sum |y_k - \hat{y}_k|, \quad \text{RMSE} = \sqrt{\frac{1}{M}\sum (y_k - \hat{y}_k)^2}, \quad R^2 = \text{NSE} = 1 - \frac{\sum (y_k - \hat{y}_k)^2}{\sum (y_k - \bar{y})^2}
-     ```
+     $`\displaystyle \text{MAE} = \frac{1}{M}\sum |y_k - \hat{y}_k|, \quad \text{RMSE} = \sqrt{\frac{1}{M}\sum (y_k - \hat{y}_k)^2}, \quad R^2 = \text{NSE} = 1 - \frac{\sum (y_k - \hat{y}_k)^2}{\sum (y_k - \bar{y})^2}`$
 
      *(Note: When $`R^2`$ is computed as the coefficient of determination $`1 - \text{SS}_{\text{res}}/\text{SS}_{\text{tot}}`$, it is mathematically identical to hydrological Nash–Sutcliffe Efficiency $`\text{NSE}`$, where $`\text{NSE} > 0.90`$ indicates excellent predictive skill.)*
    - **Task 3 (Sequence OCR):**
 
-     ```math
-     \text{Exact-Match} = \frac{1}{N}\sum_{i=1}^N \mathbb{I}(\hat{S}_i = S_i), \quad \text{CER} = \frac{\sum_{i=1}^N \text{Levenshtein}(\hat{S}_i, S_i)}{\sum_{i=1}^N |S_i|}, \quad \text{Char Acc} = 1 - \text{CER}
-     ```
+     $`\displaystyle \text{Exact-Match} = \frac{1}{N}\sum_{i=1}^N \mathbb{I}(\hat{S}_i = S_i), \quad \text{CER} = \frac{\sum_{i=1}^N \text{Levenshtein}(\hat{S}_i, S_i)}{\sum_{i=1}^N |S_i|}, \quad \text{Char Acc} = 1 - \text{CER}`$
 
 ---
 
